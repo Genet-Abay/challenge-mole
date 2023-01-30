@@ -7,20 +7,14 @@ def get_sift_descriptor(gray_img):
 
 
 def get_pca_components(gray_img):
-    sift = cv2.SIFT_create()
-    _, descriptors = sift.detectAndCompute(gray_img, None)
-    return descriptors
+    pass
 
 
 def get_wavelet_components(gray_img):
-    sift = cv2.SIFT_create()
-    _, descriptors = sift.detectAndCompute(gray_img, None)
-    return descriptors
+    pass
 
 def get_lda_components(gray_img):
-    sift = cv2.SIFT_create()
-    keypoints,descriptors = sift.detectAndCompute(gray_img, None)
-    return descriptors
+    pass
 
 
 def get_features(list_img_gr, algorithm='sift'):

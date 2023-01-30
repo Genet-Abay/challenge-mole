@@ -27,6 +27,7 @@ def prepare_data(root_path= r"C:\BeCode\computervisionData\HAM10000_skin_mnist\H
 def get_trained_model(model_name, train_data, validation_data, test_data):
     match model_name:
         case "keras":
+            model = 
             return "keras"
         case "pytorch":
             return "pytorch"
