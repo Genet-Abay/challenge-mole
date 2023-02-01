@@ -1,7 +1,4 @@
 import cv2
-from sklearn.decomposition import PCA
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-
 
 
 '''Notes
@@ -19,23 +16,16 @@ def get_sift_descriptor(gray_img):
 
 
 def get_surf_features(gray_img):
-    pca = PCA(n_components=30)
-    img_comp = pca.fit_transform(gray_img)
-    return img_comp
-
+    pass
 
 def get_hog_features(gray_img):
     pass
 
 def get_brisk_features(gray_img):
-    lda = LinearDiscriminantAnalysis()
-    lda.fit(X,y)
-    x_new = lda.transform(X) 
+    pass
 
 def get_freak_features(gray_img):
-    lda = LinearDiscriminantAnalysis()
-    lda.fit(X,y)
-    x_new = lda.transform(X) 
+    pass 
 
 
 def get_features(list_img_gr, algorithm='sift'):
@@ -44,14 +34,17 @@ def get_features(list_img_gr, algorithm='sift'):
         case "sift":
             features = [get_sift_descriptor(img) for img in list_img_gr]
             return features
-        case "pca":
-            features = [get_pca_components(img) for img in list_img_gr]
+        case "surf":
+            features = [get_surf_features(img) for img in list_img_gr]
             return features
-        case "lda":
-            features = [get_lda_components(img) for img in list_img_gr]
+        case "hog":
+            features = [get_hog_features(img) for img in list_img_gr]
             return features
-        case "wavelet":
-            features = [get_wavelet_components(img) for img in list_img_gr]
+        case "brisk":
+            features = [get_brisk_features(img) for img in list_img_gr]
+            return features
+        case "freak":
+            features = [get_freak_features(img) for img in list_img_gr]
             return features
         case default:
             features = [get_sift_descriptor(img) for img in list_img_gr]

@@ -1,7 +1,6 @@
 import cv2
 import os
 import pandas as pd
-from sklearn.model_selection import train_test_split
 import os
 
 def get_imgs(path_to_images):

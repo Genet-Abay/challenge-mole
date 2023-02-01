@@ -16,14 +16,23 @@ def filter(img, type='denoising'):
     return filtered_img
 
 
-def preprocess(list_images, ):
+def preprocess(list_images, resize, to_gray, normalize, denoise, sharpen):
     processed_imgs = []
     for img in list_images:
-        img = cv2.resize(img, 256, 256)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)       
+        if resize:
+             img = cv2.resize(img, 256, 256)
+        if to_gray:           
+             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)    
 
-        # img = cv2.normalize(img, None, 0, 1.0, cv2.NORM_MINMAX, dtype=cv2.CV_32F)
-        # img = filter(img)
+        if normalize: 
+            img = cv2.normalize(img, None, 0, 1.0, cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+
+        if denoise:
+            img = filter(img)
+
+        if sharpen:
+            img = filter(img, 'sharpen')
+
         processed_imgs.append(img)
         break
     return processed_imgs
