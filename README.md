@@ -12,11 +12,11 @@ There are 7 types of skin mole type or labels given in the dataset as shown bell
       6. 'vasc': 'Vascular lesions'
       7. 'df': 'Dermatofibroma'
 
-Of the total of 10015 datasets the following pi chart shows how much portion of each mole type recored.
+Of the total of 10015 datasets the following pie chart shows how much portion of each mole type recored.
 
-      <p float="left">
-            <img src="resources/pie.png" width="600" height=400/> 
-      </p>
+      
+<img src="resources/pie.png" width="600" height=400/> 
+   
 
 The following plots show the distribution of conserning moles across age groupd and gender.
 
