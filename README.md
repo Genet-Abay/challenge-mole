@@ -33,7 +33,7 @@ I have created and train different models using differnt frameworks, including t
 
     > python Deployment/streamlit.py 
 
-Running the above code directs to the web app locally hosted and user can upload images and use prediction button to check if the given image is cancerous or not. The user interface also gives information of the statistics on the distribution of skin cancers based on age group and gender.
+Running the above code directs to the web app locally hosted and user can upload images to see if it is canderous or not.
 
 The accuracy and loss of the model are shown bellow
 
