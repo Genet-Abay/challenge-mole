@@ -4,13 +4,13 @@ This project aims to create a model that classifies skin mole type by training s
 The data set contains 10015 images and a metadata as a csv file which contains the image ID coresponds to image name, the corresponding label, the patient age and area of body part from which the image taken.
 There are 7 types of skin mole type or labels given in the dataset as shown bellow of which, nv, bkl, df and vasc are of no concerning but the others are concerning because they are reported as type of cancerous images. Based on this inforamtion the model prediction result is canerous or non cancerous.
 
-      1. 'nv': 'Melanocytic nevi'
-      2. 'mel': 'Melanoma'
-      3. 'bkl': 'Benign keratosis-like lesions '
-      4. 'bcc': 'Basal cell carcinoma'
-      5. 'akiec': 'Actinic keratoses'
-      6. 'vasc': 'Vascular lesions'
-      7. 'df': 'Dermatofibroma'
+1. 'nv': 'Melanocytic nevi'
+2. 'mel': 'Melanoma'
+3. 'bkl': 'Benign keratosis-like lesions '
+4. 'bcc': 'Basal cell carcinoma'
+5. 'akiec': 'Actinic keratoses'
+6. 'vasc': 'Vascular lesions'
+7. 'df': 'Dermatofibroma'
 
 Of the total of 10015 datasets the following pie chart shows how much portion of each mole type recored.
 
