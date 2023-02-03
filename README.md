@@ -20,10 +20,10 @@ Of the total of 10015 datasets the following pie chart shows how much portion of
 
 The following plots show the distribution of conserning moles across age groupd and gender.
 
-    <p float="left">
-          <img src="resources/moletype_age.png" width="600" height=400/> 
-          <img src="resources/moletype_sex.png" width="600" height="270" />   
-      </p>
+    
+<img src="resources/moletype_age.png" width="600" height=400/> 
+<img src="resources/moletype_sex.png" width="600" height="270" />   
+     
 
 I have created and train different models using differnt frameworks, including transfer larning with pretrained models (just for learning ) and finally i have selected CNN with keras framework as it is simple to implement, and deploy. The model is deployed using streamlit and can be used by runnig the following code
 
@@ -37,15 +37,10 @@ Running the above code directs to the web app locally hosted and user can upload
 
 The accuracy and loss of the model are shown bellow
 
-      <p float="left">
-          <img src="resources/hardness_beforeOLR.png" width="600" height=400/> 
-          <img src="resources/hardness_afterOLR.png" width="600" height="270" />   
-      </p>
-
-    <p float="left">
-      <img src="resources/hardness_beforeOLR.png" width="600" height=400/> 
-      <img src="resources/hardness_afterOLR.png" width="600" height="270" />   
-    </p>
+     
+<img src="resources/accuracy.png" width="600" height=400/> 
+<img src="resources/loss.png" width="600" height="270" />   
+   
     
         
 
