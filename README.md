@@ -22,6 +22,8 @@ The following plots show the distribution of conserning moles across age groupd 
 
     
 <img src="resources/moletype_age.png" width="600" height=400/> 
+
+
 <img src="resources/moletype_sex.png" width="600" height="270" />   
      
 
