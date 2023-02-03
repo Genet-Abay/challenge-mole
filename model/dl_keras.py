@@ -64,10 +64,10 @@ def create_test_model(train_images, val_images, train_labels, val_labels):
     model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(100, 100, 3)))
     model.add(MaxPooling2D((2, 2)))
     model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D((2, 2)))
-    model.add(Dropout(0.2))
+    model.add(MaxPooling2D((2, 2)))    
     model.add(Flatten())
     model.add(Dense(128, activation='relu'))
+    model.add(Dropout(0.5))
     model.add(Dense(2, activation='softmax'))
 
     # Compile the model
@@ -138,3 +138,7 @@ if __name__ == '__main__':
 #     accuracy                           0.70      2003
 #    macro avg       0.41      0.36      0.36      2003
 # weighted avg       0.64      0.70      0.65      2003
+
+
+
+

@@ -8,9 +8,11 @@ from keras.utils.vis_utils import plot_model
 import seaborn as sns
 import time
 from matplotlib import pyplot as plt
+import cv2
 
 st.title('Skin mole type identification')
-st.write('Problem definition .... ')
+
+st.write('This application is an AI model that classifies a given image as either cancerous or not. The model accuray and loss over epochs are shown bellow')
 
 df = pd.read_csv(r"C:\BeCode\computervisionData\HAM10000_skin_mnist\HAM10000_metadata.csv")
 df['concern'] = df['dx'].apply(lambda x : 0 if ((x == 'nv') | (x == 'bkl') | (x == 'df') | (x == 'vasc')) else 1)
@@ -27,24 +29,26 @@ st.subheader('Please upload imaget')
 file_uploader = st.file_uploader("Select an image for Classification", type="jpg")
 print(file_uploader)
 
-# model = keras.models.load_model('mnist_model', compile=False)
+model = keras.models.load_model('Deployment/model_keras.h5', compile=False)
+ 
 
-# if file_uploader:
-#     image = Image.open(file_uploader)
-#     st.image(image, caption='Selected Image')
+if file_uploader:
+    image = Image.open(file_uploader).resize((128,128))
+    st.image(image, caption='Selected Image and predict')
+    plt.imshow(image)
 
-# if st.button('Predict'):
-#     #add warning for image not selected
-#     image = np.asarray(image)
-
-#     pred = model.predict(image.reshape(1,224,224,3))
+    # img_test_ex = cv2.resize(image, (128,128))
+    img_test_ex = np.asarray(image)
+    img_test_ex = np.array(img_test_ex/255.0)
+    img_test_ex = np.expand_dims(img_test_ex, axis=0)
+    result = model.predict(img_test_ex)
 
     
-#     my_bar = st.progress(0)
-#     with st.spinner('Predicting'):
-#         time.sleep(2)
+    my_bar = st.progress(0)
+    with st.spinner('Predicting'):
+        time.sleep(2)
     
-    # if pred == 1:
-        # st.write("The mole looks concerning and needs medical attention")
-    # else:
-        # st.write("The mole looks concerning and needs medical attention")    
+    if  ((result == 'nv') | (result == 'bkl') | (result == 'df') | (result == 'vasc')):
+        print("the images looks of no concern, not cancerous")
+    else:
+        print("the image is classified as cancerous mole and needs medical attention")
