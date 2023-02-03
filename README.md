@@ -65,7 +65,7 @@ Free license
 
 Genet Abay Shiferaw: genetabay.s@gmail.com
 
-Repository link : https://github.com/Genet-Abay/ArcelorMittal-Constriction-identification
+Repository link : https://github.com/Genet-Abay/challenge-mole/tree/main
 
 
 ## Acknowledgments
