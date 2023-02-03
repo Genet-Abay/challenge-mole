@@ -1,6 +1,5 @@
 import cv2
 
-
 '''Notes
 The SIFT family of interest point detectors. Includes things like SURF, FREAK, BRISK, etc. Primarily used for object recognition, tracking and registration.
 HoG and it's variants. Used for object detection, handwritten digit recognition.

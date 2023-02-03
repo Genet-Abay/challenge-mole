@@ -1,4 +1,4 @@
-from dataacquisition import read_data, split_imgfiles
+from utils import read_data, split_imgfiles
 from preprocessing import process
 from featureXtraction import xtract_features
 from matplotlib import pyplot as plt

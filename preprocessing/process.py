@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import sklearn as sns
-from dataacquisition import read_data
+from utils import read_data
 from matplotlib import pyplot as plt
 
 

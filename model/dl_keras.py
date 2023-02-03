@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 import cv2
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
@@ -14,7 +15,8 @@ def get_data():
     # Load the image data and metadata
     images_dir = r"C:\BeCode\computervisionData\HAM10000_skin_mnist\HAM10000_images"
     df_original = pd.read_csv(r"C:\BeCode\computervisionData\HAM10000_skin_mnist\HAM10000_metadata.csv")
-    df = df_original.sample(n=100)
+    df = df_original.copy()#.sample(n=5000)
+    df['concern'] = df['dx'].apply(lambda x : 0 if ((x == 'nv') | (x == 'bkl') | (x == 'df') | (x == 'vasc')) else 1)
 
     # Preprocess the image data
     images = []
@@ -29,15 +31,17 @@ def get_data():
         images.append(img)
         labels.append(df.iloc[i]['dx'])
 
+    
+
     images = np.array(images) / 255.0
     labels = np.array(labels)
 
-    encoder = LabelEncoder()
-    encoder.fit(labels)
-    labels = encoder.transform(labels)
+    # encoder = LabelEncoder()
+    # encoder.fit(labels)
+    # labels = encoder.transform(labels)
 
-    # Convert the labels to categorical data
-    labels = to_categorical(labels)
+    # # Convert the labels to categorical data
+    # labels = to_categorical(labels)
 
     # Split the data into training and validation sets
     train_images, val_images, train_labels, val_labels = train_test_split(images, labels, test_size=0.2, random_state=42)
@@ -64,14 +68,15 @@ def create_test_model(train_images, val_images, train_labels, val_labels):
     model.add(Dropout(0.2))
     model.add(Flatten())
     model.add(Dense(128, activation='relu'))
-    model.add(Dense(7, activation='softmax'))
+    model.add(Dense(2, activation='softmax'))
 
     # Compile the model
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     # Train the model without augmented data
-    # history = model.fit(train_images, train_labels, epochs=10, batch_size=32, validation_data=(val_images, val_labels))
+    history = model.fit(train_images, train_labels, epochs=5, batch_size=32, validation_data=(val_images, val_labels))
+
     # Train model using the ImageDataGenerator object - augmented images
-    history = model.fit_generator(datagen.flow(train_images, train_labels, batch_size=32), steps_per_epoch=len(train_images) / 10, epochs=10, validation_data=(val_images, val_labels))
+    # history = model.fit_generator(datagen.flow(train_images, train_labels, batch_size=32), steps_per_epoch=len(train_images) / 10, epochs=10, validation_data=(val_images, val_labels))
     
     return model, history
 
@@ -104,10 +109,32 @@ def main():
     model, history = create_test_model(train_images, val_images, train_labels, val_labels)
     show_result(history)
 
+    pred = model.predict(val_images, val_labels)
+    report = metrics.classification_report(val_labels, pred)
+    print(report)
+
     # Save the model
+    # model.save("../model_keras.h5")
+
     
     
 
 
 if __name__ == '__main__':
     main()
+
+
+
+#                precision    recall  f1-score   support
+
+#        akiec       0.25      0.01      0.03        75
+#          bcc       0.34      0.25      0.29       105
+#          bkl       0.41      0.24      0.30       224
+#           df       0.00      0.00      0.00        24
+#          mel       0.41      0.33      0.36       233
+#           nv       0.77      0.92      0.84      1320
+#         vasc       0.68      0.77      0.72        22
+
+#     accuracy                           0.70      2003
+#    macro avg       0.41      0.36      0.36      2003
+# weighted avg       0.64      0.70      0.65      2003
